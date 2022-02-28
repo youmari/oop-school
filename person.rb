@@ -9,13 +9,17 @@ class Person
     @parent_permission = parent_permission
   end
 
-  def is_of_age?
-    true ? @age >= 18 : false
+  def of_age?
+    @age >= 18
   end
 
   private :is_of_age?
 
   def can_use_services?
-    true ? is_of_age? && @parent_permission : false
+    if is_of_age? && @parent_permission
+      true
+    else
+      false
+    end
   end
 end
