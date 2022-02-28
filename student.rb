@@ -1,9 +1,8 @@
-require "./person.rb"
+require './person'
 
 class Student < Person
-  
-  def initialize(name, age, classroom)
-    super(name,age)
+  def initialize(age, name, classroom)
+    super(age, name)
     @classroom = classroom
   end
 
@@ -11,4 +10,3 @@ class Student < Person
     "¯\(ツ)/¯"
   end
 end
-
