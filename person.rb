@@ -30,4 +30,8 @@ class Person
   def validate_name(name)
     @corrector.correct_name(name)
   end
+
+  def rent_a_book(book, date)
+    Rental.new(book, self, date)
+  end
 end
