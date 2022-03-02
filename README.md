@@ -38,7 +38,9 @@ OR
 open terminal
 run ruby (file name).rb
 ```
-
+### Usage 
+- navigate to root directory of the app and run ./main.rb
+- follow the instructions of the app
 
 ## Authors
 
