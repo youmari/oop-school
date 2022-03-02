@@ -41,7 +41,6 @@ class App
     puts ''
   end
 
-  has too many lines
   def create_person
     print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
     @num = gets.chomp
@@ -82,7 +81,6 @@ class App
       puts 'Please enter correct number'
     end
   end
-  has too many lines
 
   def create_book
     print 'Title: '
