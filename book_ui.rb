@@ -6,11 +6,7 @@ class BookUserInterface
   end
 
   def create_book
-    print 'Title: '
-    title = gets.chomp
-
-    print 'Author: '
-    author = gets.chomp
+    title, author = self.book_details
 
     @books << Book.new(title, author)
     puts 'Book created successfully'
@@ -27,5 +23,16 @@ class BookUserInterface
       end
     end
     puts ''
+  end
+
+  private
+  def book_details
+    print 'Title: '
+    title = gets.chomp
+
+    print 'Author: '
+    author = gets.chomp
+
+    [title, author]
   end
 end
