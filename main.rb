@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 require './person'
 require './student'
 require './teacher'
@@ -7,9 +5,9 @@ require './book'
 require './classroom'
 require './rental'
 require './corrector'
-require './BookUi.rb'
-require './PersonUi.rb'
-require './RentalUi.rb'
+require './book_ui'
+require './person_ui'
+require './rental_ui'
 
 class UserInterface
   def initialize
@@ -21,10 +19,11 @@ class UserInterface
   def start
     puts 'Welcome to Shcool library App!'
     puts ' '
-    self.command_executor
+    command_executor
   end
 
   private
+
   def command_instruction
     puts 'Please choose an option by entring a number: '
     puts '1 - List all books'
@@ -37,8 +36,8 @@ class UserInterface
   end
 
   def command_executor
-      loop do
-      self.command_instruction
+    loop do
+      command_instruction
       answer = gets.chomp
       case answer
       when '1'
@@ -50,7 +49,7 @@ class UserInterface
       when '4'
         @book.create_book
       when '5'
-        @rental.create_rental(@book.books,@people.people)
+        @rental.create_rental(@book.books, @people.people)
       when '6'
         @rental.list_all_rental_by_id
       when '7'
