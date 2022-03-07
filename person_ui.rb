@@ -32,36 +32,50 @@ class PersonUserInterface
 
   private
 
-  def create_student
+  def get_age
     print 'Age: '
     @age = gets.chomp
+  end
 
+  def get_name
     print 'Name: '
     @name = gets.chomp
+  end
 
+  def get_permission
     print 'Has parent_permission ? [Y/N]: '
     @permission = gets.chomp
 
     @permission = false if @permission == 'n'
     @permission = true if @permission == 'y'
+  end
 
-    @people << Student.new(@age, @name, @permission)
+  def get_specialization
+    print 'Specialization: '
+    @specialization = gets.chomp
+  end
+
+  def create_student
+    age = get_age
+
+    name = get_name
+
+    permission = get_permission
+
+    @people << Student.new(age, name, permission)
 
     puts 'Person created successfully'
     puts ''
   end
 
   def create_teacher
-    print 'Age: '
-    @age = gets.chomp
+    age = get_age
 
-    print 'Name: '
-    @name = gets.chomp
+    name = get_name
 
-    print 'Specialization: '
-    @specialization = gets.chomp
+    specialization = get_specialization
 
-    @people << Teacher.new(@age, @name, @specialization)
+    @people << Teacher.new(age, name, specialization)
 
     puts 'Person successfully created'
     puts ''

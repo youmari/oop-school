@@ -6,7 +6,7 @@ class BookUserInterface
   end
 
   def create_book
-    title, author = self.book_details
+    title, author = book_details
 
     @books << Book.new(title, author)
     puts 'Book created successfully'
