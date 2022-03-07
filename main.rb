@@ -5,71 +5,14 @@ require './book'
 require './classroom'
 require './rental'
 require './corrector'
-
+require './BookUi.rb'
+require './PersonUi.rb'
 class UserInterface
-  attr_reader :people, :books
-
   def initialize
-    @people = []
+    @people = PersonUserInterface.new
     @rentals = []
+    @book = BookUserInterface.new
   end
-
-
-  def list_all_people
-    if @people.count.zero?
-      puts ''
-      puts 'There are no people yet try to create one !'
-    else
-      @people.each do |person|
-        puts "[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
-      end
-    end
-    puts ''
-  end
-
-  def create_person
-    print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
-    @num = gets.chomp
-    case @num
-    when '1'
-      print 'Age: '
-      @age = gets.chomp
-
-      print 'Name: '
-      @name = gets.chomp
-
-      print 'Has parent_permission ? [Y/N]: '
-      @permission = gets.chomp
-
-      @permission = false if @permission == 'n'
-      @permission = true if @permission == 'y'
-
-      @people << Student.new(@age, @name, @permission)
-
-      puts 'Person created successfully'
-      puts ''
-    when '2'
-
-      print 'Age: '
-      @age = gets.chomp
-
-      print 'Name: '
-      @name = gets.chomp
-
-      print 'Specialization: '
-      @specialization = gets.chomp
-
-      @people << Teacher.new(@age, @name, @specialization)
-
-      puts 'Person successfully created'
-      puts ''
-    else
-      puts 'Please enter correct number'
-
-      
-    end
-  end
-
 
   def create_rental
     if @books.count.zero?
@@ -126,13 +69,13 @@ class UserInterface
 
       case answer
       when '1'
-        list_all_books
+        @book.list_all_books
       when '2'
-        list_all_people
+        @people.list_all_people
       when '3'
-        create_person
+        @people.create_person
       when '4'
-        create_book
+        @book.create_book
       when '5'
         create_rental
       when '6'

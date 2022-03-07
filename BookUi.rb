@@ -1,4 +1,6 @@
-class BookUserinterface
+class BookUserInterface
+  attr_reader :books
+
   def initialize
     @books = []
   end
