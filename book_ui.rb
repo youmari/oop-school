@@ -26,6 +26,7 @@ class BookUserInterface
   end
 
   private
+
   def book_details
     print 'Title: '
     title = gets.chomp

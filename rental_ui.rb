@@ -8,7 +8,7 @@ class RentalUserInterface
 
     person_num = get_person_from_user(people)
 
-    date = get_date
+    date = date_input
 
     @rentals << Rental.new(books[book_num.to_i], people[person_num.to_i], date)
     puts 'Rental created successfully'
@@ -27,9 +27,9 @@ class RentalUserInterface
 
   private
 
-  def get_date
+  def date_input
     puts 'Date: '
-    date = gets.chomp
+    gets.chomp
   end
 
   def get_book_from_user(books)
@@ -41,7 +41,7 @@ class RentalUserInterface
         puts "#{index})Title: #{book.title}, Author: #{book.author}"
       end
     end
-    book_num = gets.chomp
+    gets.chomp
   end
 
   def get_person_from_user(people)
@@ -53,6 +53,6 @@ class RentalUserInterface
         puts "#{index}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
       end
     end
-    person_num = gets.chomp
+    gets.chomp
   end
 end

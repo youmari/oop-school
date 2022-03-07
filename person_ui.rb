@@ -32,17 +32,17 @@ class PersonUserInterface
 
   private
 
-  def get_age
+  def age_input
     print 'Age: '
-    @age = gets.chomp
+    gets.chomp
   end
 
-  def get_name
+  def name_input
     print 'Name: '
-    @name = gets.chomp
+    gets.chomp
   end
 
-  def get_permission
+  def permission_input
     print 'Has parent_permission ? [Y/N]: '
     @permission = gets.chomp
 
@@ -50,17 +50,17 @@ class PersonUserInterface
     @permission = true if @permission == 'y'
   end
 
-  def get_specialization
+  def specialization_input
     print 'Specialization: '
-    @specialization = gets.chomp
+    gets.chomp
   end
 
   def create_student
-    age = get_age
+    age = age_input
 
-    name = get_name
+    name = name_input
 
-    permission = get_permission
+    permission = permission_input
 
     @people << Student.new(age, name, permission)
 
@@ -69,11 +69,11 @@ class PersonUserInterface
   end
 
   def create_teacher
-    age = get_age
+    age = age_input
 
-    name = get_name
+    name = name_input
 
-    specialization = get_specialization
+    specialization = specialization_input
 
     @people << Teacher.new(age, name, specialization)
 
