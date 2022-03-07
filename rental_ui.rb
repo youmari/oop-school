@@ -4,14 +4,11 @@ class RentalUserInterface
   end
 
   def create_rental(books, people)
-    get_book_from_user(books)
-    book_num = gets.chomp
+    book_num = get_book_from_user(books)
 
-    get_person_from_user(people)
-    person_num = gets.chomp
+    person_num = get_person_from_user(people)
 
-    puts 'Date: '
-    date = gets.chomp
+    date = get_date
 
     @rentals << Rental.new(books[book_num.to_i], people[person_num.to_i], date)
     puts 'Rental created successfully'
@@ -30,6 +27,11 @@ class RentalUserInterface
 
   private
 
+  def get_date
+    puts 'Date: '
+    date = gets.chomp
+  end
+
   def get_book_from_user(books)
     if books.count.zero?
       puts 'Please try to create book first and try again !'
@@ -39,6 +41,7 @@ class RentalUserInterface
         puts "#{index})Title: #{book.title}, Author: #{book.author}"
       end
     end
+    book_num = gets.chomp
   end
 
   def get_person_from_user(people)
@@ -50,5 +53,6 @@ class RentalUserInterface
         puts "#{index}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
       end
     end
+    person_num = gets.chomp
   end
 end
