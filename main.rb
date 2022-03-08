@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 require './person'
 require './student'
 require './teacher'
@@ -19,6 +20,9 @@ class UserInterface
   def start
     puts 'Welcome to Shcool library App!'
     puts ' '
+    if File.exist?('book.json') && !File.empty?('book.json')
+      @book.retrieved_books_data_from_file
+    end
     command_executor
   end
 
@@ -53,6 +57,7 @@ class UserInterface
       when '6'
         @rental.list_all_rental_by_id
       when '7'
+        @book.save_books_data
         break
       end
     end
