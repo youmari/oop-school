@@ -4,6 +4,8 @@ class BookUserInterface
 
   def initialize
     @books = []
+    @books_length = 0
+    @path = 'data/book.json'
   end
 
   def create_book
@@ -27,24 +29,27 @@ class BookUserInterface
   end
 
   def save_books_data
-    if @books.length
-      if File.exist?('book.json') 
-        if File.empty?("book.json")
-          save_books
-        else
-          append_books
-        end
-      else
+    return unless @books.length > @books_length
+
+    if File.exist?(@path)
+      if File.empty?(@path)
         save_books
+      else
+        append_books
       end
+    else
+      save_books
     end
   end
 
   def retrieved_books_data_from_file
-    retrieved_data = JSON.parse(File.read('book.json'))
+    return unless File.exist?(@path) && !File.empty?(@path)
+
+    retrieved_data = JSON.parse(File.read(@path))
     retrieved_data.each do |book|
-      @books << Book.new(book["title"], book["author"])
+      @books << Book.new(book['title'], book['author'])
     end
+    @books_length = @books.length
   end
 
   private
@@ -52,17 +57,17 @@ class BookUserInterface
   def save_books
     books_data = []
     @books.each do |book|
-      books_data << {title: "#{book.title}",author: "#{book.author}"}
+      books_data << { title: book.title.to_s, author: book.author.to_s }
     end
-    File.write('book.json',JSON.generate(books_data))
+    File.write(@path, JSON.generate(books_data))
   end
 
   def append_books
-    retrieved_data = JSON.parse(File.read('book.json'))
-    @books.each do |book|
-      retrieved_data << {title: "#{book.title}",author: "#{book.author}"}
+    retrieved_data = JSON.parse(File.read(@path))
+    @books.each_with_index do |book, index|
+      retrieved_data << { title: book.title.to_s, author: book.author.to_s } if index > @books_length - 1
     end
-    File.write('book.json',JSON.generate(retrieved_data))
+    File.write(@path, JSON.generate(retrieved_data))
   end
 
   def book_details
