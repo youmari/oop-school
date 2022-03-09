@@ -19,6 +19,8 @@ class UserInterface
   def start
     puts 'Welcome to Shcool library App!'
     puts ' '
+    @people.retrieved_people_data_from_file
+    @book.retrieved_books_data_from_file
     command_executor
   end
 
@@ -35,26 +37,32 @@ class UserInterface
     puts '7 - Exit'
   end
 
+  def command_options(option)
+    case option
+    when '1'
+      @book.list_all_books
+    when '2'
+      @people.list_all_people
+    when '3'
+      @people.create_person
+    when '4'
+      @book.create_book
+    when '5'
+      @rental.create_rental(@book.books, @people.people)
+    when '6'
+      @rental.list_all_rental_by_id
+    when '7'
+      @book.save_books_data
+      @people.save_people_data
+      exit
+    end
+  end
+
   def command_executor
     loop do
       command_instruction
       answer = gets.chomp
-      case answer
-      when '1'
-        @book.list_all_books
-      when '2'
-        @people.list_all_people
-      when '3'
-        @people.create_person
-      when '4'
-        @book.create_book
-      when '5'
-        @rental.create_rental(@book.books, @people.people)
-      when '6'
-        @rental.list_all_rental_by_id
-      when '7'
-        break
-      end
+      command_options(answer)
     end
   end
 end
