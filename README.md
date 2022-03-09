@@ -43,10 +43,12 @@ run ruby (file name).rb
 - follow the instructions of the app
 
 ## Testing
-###to run the application tests follow the command below: 
-- 1 install Rspec by typing "gem install rspec" in the terminal
-- 2 navigate to root directory of the application
-- 3 type "rspec" in the terminal
+### to run the application tests follow the command below: 
+```bash
+ 1 install Rspec by typing "gem install rspec" in the terminal
+ 2 navigate to root directory of the application
+ 3 type "rspec" in the terminal
+```
 
 ## Authors
 
